@@ -1,0 +1,255 @@
+/* Importa la libreria di animazioni */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+
+/* Stile generale del container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9; /* Cambia il colore dello sfondo */
+}
+
+
+.container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Effetto di hover per il pulsante "Aggiorna Domanda per tutti i file" */
+.container button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Stile per il titolo */
+.title {
+    font-family: 'Arial Black', sans-serif; /* Usa un font originale */
+    font-size: 32px;
+    color: #007bff; /* Cambia il colore del testo */
+    margin-bottom: 20px;
+}
+
+
+/* Stile specifico per le informazioni del PDF */
+.pdf-info {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff; /* Cambia il colore dello sfondo */
+}
+
+
+/* Stile per gli header delle informazioni del PDF */
+.pdf-info h2 {
+    color: #333;
+}
+
+
+/* Stile per i form all'interno delle informazioni del PDF */
+.pdf-info form {
+    margin-top: 15px;
+}
+
+
+/* Stile per gli input di testo nei form */
+.pdf-info input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* Stile per i pulsanti nei form */
+.pdf-info button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Effetto di hover per i pulsanti */
+.pdf-info button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Stile per i pulsanti nei form */
+.pdf-info .remove-form button {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Effetto di hover per i pulsanti */
+.pdf-info .remove-form button:hover {
+    background-color: #c82333;
+}
+
+
+/* Stile per i paragrafi all'interno delle informazioni del PDF */
+.pdf-info p {
+    margin-top: 10px;
+}
+
+
+/* Stile per il pulsante "Invia tutte le domande" */
+#send-all-questions {
+    margin-top: 20px;
+    float: right;
+    margin-right: 10px;
+}
+
+
+/* Stile per il form della domanda globale */
+#global-question-form {
+    margin-top: 20px;
+}
+
+
+/* Stile per il pulsante "Aggiorna Domanda" */
+#global-question-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Effetto di hover per il pulsante "Aggiorna Domanda per tutti i file" */
+#global-question-form button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Stile per la barra di caricamento */
+#loading {
+    display: none;
+    margin-top: 20px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+
+/* Stile per il pulsante "Invia tutte le domande" */
+#send-all-questions {
+    padding: 10px 20px;
+    background-color: #007bff; /* Cambia il colore di sfondo in rosso */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Effetto di hover per il pulsante "Invia tutte le domande" */
+#send-all-questions:hover {
+    background-color: #0056b3; /* Cambia il colore di sfondo in rosso più scuro al passaggio del mouse */
+}
+
+.room-list-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 20px 0;
+}
+
+.room-list-wrapper {
+    display: flex;
+    overflow: hidden;
+}
+
+.room-list {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.room-item {
+    width: 200px;
+    height: 100px;
+    background-color: #f9f9f9;
+    margin-right: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-name {
+    font-size: 18px;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+/* Stile per i link delle stanze */
+.room-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Colore di sfondo verde */
+    color: #fff; /* Colore del testo bianco */
+    text-decoration: none; /* Rimuovi la sottolineatura del link */
+    border-radius: 5px; /* Bordi arrotondati */
+    margin: 5px; /* Spazio esterno */
+    transition: background-color 0.3s ease; /* Transizione fluida */
+}
+
+/* Effetto di hover per i link delle stanze */
+.room-link:hover {
+    background-color: #45a049; /* Cambia il colore di sfondo al passaggio del mouse */
+}
