@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ room.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">{{ room.name }}</h1>
+
+        {% if error_message %}
+        <p>{{ error_message }}</p>
+        {% endif %}
+
+        <p> Welcome to the room "{{ room.name }}"!</p>
+
+        {% for document in documents %}
+            <div class="pdf-info" id="document_{{ document.id }}">
+                <h2>File Title: {{ document.filename }}</h2>
+                <form action="{{ url_for('room', room_name=room.name) }}" method="post">
+                    <input type="hidden" name="load_document_id" value="{{ document.id }}">
+                    <button type="submit" class="button" name="action" value="load">Upload</button>
+                </form>
+                <form class="remove-form" action="{{ url_for('room', room_name=room.name) }}" method="post">
+                    <input type="hidden" name="remove_document_id" value="{{ document.id }}">
+                    <button type="submit" class="button" name="action" value="remove">Remove</button>
+                </form>
+                <!-- Altre informazioni del documento, se necessario -->
+            </div>
+        {% endfor %}
+
+                <!-- Form per caricare documenti nella stanza -->
+        <h2>Upload Files</h2>
+        <form action="{{ url_for('room', room_name=room.name) }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="files[]" accept=".pdf, .txt, .md, .pptx, .docx" multiple required>
+            <button type="submit" class="button">Upload</button>
+        </form>
+
+        <!-- Elenco dei documenti caricati nella stanza -->
+        {% if pdf_data %}
+        <form id="global-question-form" action="{{ url_for('room', room_name=room.name) }}" method="post">
+            <input type="hidden" name="all_pdfs" value="true">
+            <input type="text" name="global_question" placeholder="Enter the question for all files" required>
+            <button type="submit" name="update_global_question" class="button">Update question for all files</button>
+        </form>
+        <form action="{{ url_for('room', room_name=room.name) }}" method="post">
+            <input type="hidden" name="send_all_questions" value="true">
+            <button type="submit" id="send-all-questions" class="red-button">Send all questions</button>
+        </form>
+        {% endif %}
+
+        {% for pdf_title, data in pdf_data.items() %}
+        <div class="pdf-info">
+            <h2>File Title: {{ data.pdf_title }}</h2>
+            <form action="{{ url_for('room', room_name=room.name) }}" method="post" class="remove-form">
+                <input type="hidden" name="remove_pdf" value="{{ data.pdf_title }}">
+                <button type="submit" class="button">Remove</button>
+            </form>
+            <form action="{{ url_for('room', room_name=room.name) }}" method="post">
+                <input type="hidden" name="pdf_title" value="{{ data.pdf_title }}">
+                <input type="text" name="question" placeholder="Enter your question" value="{{ data.question }}" required>
+                <button type="submit" class="button">Send question</button>
+            </form>
+            <p>Question: {{ data.question }}</p>
+            <p>Answer: {{ data.answer }}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+</body>
+</html>

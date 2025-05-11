@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocumentDigitalTwin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">DocumentDigitalTwin</h1> <!-- Aggiunto il titolo -->
+        <!-- Aggiungi modulo per creare una nuova room -->
+        <h2>Create a new room</h2>
+
+        <form action="/" method="post">
+            <input type="text" name="room_name" placeholder="Room name" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" name="create_room" class="button">Crea Room</button>
+        </form>
+
+        {% if create_room_error %}
+            <p class="error">{{ create_room_error }}</p>
+        {% endif %}
+
+
+        <h2>Existing rooms</h2>
+        <form action="/" method="get">
+            <input type="text" id="searchInput" name="search_query" placeholder="Search by room name">
+        </form>
+        <!-- Contenitore per la lista delle stanze -->
+        <div class="room-list-container">
+            <!-- Lista delle stanze -->
+            <ul class="room-list">
+                {% for room in rooms %}
+                    <li class="room-item">
+                        <!-- Modifichiamo il link per indirizzare correttamente alla pagina di inserimento della password -->
+                        <a class="room-link" href="{{ url_for('join_room', room_name=room.name) }}">{{ room.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Freccia sinistra per lo scorrimento della lista -->
+        <button class="prev-btn">&lt;</button>
+
+        <!-- Freccia destra per lo scorrimento della lista -->
+        <button class="next-btn">&gt;</button>
+
+        <p id="noResultsMessage" style="display: none;">No rooms match your search.</p>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const roomList = document.querySelector('.room-list');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let scrollAmount = 0;
+
+            prevBtn.addEventListener('click', function () {
+                scrollAmount -= 200;
+                roomList.style.transform = `translateX(${scrollAmount}px)`;
+            });
+
+            nextBtn.addEventListener('click', function () {
+                scrollAmount += 200;
+                roomList.style.transform = `translateX(${scrollAmount}px)`;
+            });
+
+            // Gestisci il click sui link delle stanze
+            const roomLinks = document.querySelectorAll('.room-link');
+            roomLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    // Impedisci la navigazione predefinita del link
+                    event.preventDefault();
+                    // Indirizza manualmente all'URL specificato nel link
+                    window.location.href = link.href;
+                });
+            });
+        });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const roomList = document.querySelector('.room-list');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let scrollAmount = 0;
+
+            prevBtn.addEventListener('click', function () {
+                scrollAmount -= 200;
+                roomList.style.transform = `translateX(${scrollAmount}px)`;
+            });
+
+            nextBtn.addEventListener('click', function () {
+                scrollAmount += 200;
+                roomList.style.transform = `translateX(${scrollAmount}px)`;
+            });
+
+            // Gestisci il click sui link delle stanze
+            const roomLinks = document.querySelectorAll('.room-link');
+            roomLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    // Interrompi la propagazione dell'evento click
+                    event.stopPropagation();
+                });
+            });
+
+        });
+
+        </script>
+
+
+
+
+        <!-- Aggiungi modulo per accedere a una room esistente -->
+        <h2>Access an existing room</h2>
+
+        <form action="/direct_access" method="post"> <!-- Modificato qui -->
+            <input type="text" name="room_name" placeholder="Room name" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" name="join_room" class="button">Login</button>
+        </form>
+
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
+
+        <h2>Upload files</h2>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="files[]" accept=".pdf, .txt, .md, .pptx, .docx" multiple required>
+            <button type="submit" class="button">Upload</button> <!-- Modificato qui -->
+        </form>
+
+
+        {% if pdf_data %}
+        <form id="global-question-form" action="/" method="post">
+            <input type="hidden" name="all_pdfs" value="true">
+            <input type="text" name="global_question" placeholder="Enter the question for all files" required>
+            <button type="submit" name="update_global_question" class="button">Update question for all files</button> <!-- Modificato qui -->
+        </form>
+        <form action="/" method="post">
+            <input type="hidden" name="send_all_questions" value="true">
+            <button type="submit" id="send-all-questions" class="red-button">Send all questions</button> <!-- Modificato qui -->
+        </form>
+        {% endif %}
+
+
+        {% for pdf_title, data in pdf_data.items() %}
+        <div class="pdf-info">
+            <h2>File Title: {{ data.pdf_title }}</h2>
+            <form action="/" method="post" class="remove-form">
+                <input type="hidden" name="remove_pdf" value="{{ data.pdf_title }}">
+                <button type="submit" class="button">Remove</button> <!-- Modificato qui -->
+            </form>
+            <form action="/" method="post">
+                <input type="hidden" name="pdf_title" value="{{ data.pdf_title }}">
+                <input type="text" name="question" placeholder="Enter the question" value="{{ data.question }}" required>
+                <button type="submit" class="button">Send question</button> <!-- Modificato qui -->
+            </form>
+            <p>Question: {{ data.question }}</p>
+            <p>Answer: {{ data.answer }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
