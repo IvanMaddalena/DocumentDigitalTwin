@@ -1,0 +1,21 @@
+# Ambiente virtuale
+venv/
+.env
+
+# Cache di Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Config locale
+instance/
+
+# File temporanei
+uploads/
+*.sqlite3
+*.db
+
+# File di sistema
+.DS_Store
+Thumbs.db
