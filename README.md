@@ -67,17 +67,9 @@ python app.py
 
 <img src="docs/performance_fig_p29_1.png" width="500"/>
 
-🕓 Average Response Time by Format
-
-<img src="docs/performance_fig_p31_1.png" width="500"/>
-
 🖥️ UI Screenshot - Room Interface
 
 <img src="docs/performance_fig_p25_1.png" width="500"/>
-
-🚀 Mean Token Generation Speed
-
-<img src="docs/performance_fig_p34_1.png" width="500"/>
 
 ## 📂 Project Structure
 
@@ -98,11 +90,14 @@ DocumentDigitalTwin/
 
 This project was developed as part of my MSc thesis titled:
 "Digital Twin Generation for Documents Using Large Language Models"
+
 Presented at: Politecnico di Bari, Department of Computer Engineering
+
 Year: 2024–2025
 
 ## 📬 Contact
 
 👤 Ivan Maddalena
+
 📫 Email: ivan.maddalena00@gmail.com
 
