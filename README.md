@@ -60,22 +60,28 @@ python app.py
 ## 📊 Performance Results
 
 ⏱️ First Token Generation Time
+
 <img src="docs/performance_fig_p28_1.png" width="500"/>
 
 ⚡ Generation Speed per Format
+
 <img src="docs/performance_fig_p29_1.png" width="500"/>
 
 🕓 Average Response Time by Format
+
 <img src="docs/performance_fig_p31_1.png" width="500"/>
 
 🖥️ UI Screenshot - Room Interface
+
 <img src="docs/performance_fig_p25_1.png" width="500"/>
 
 🚀 Mean Token Generation Speed
+
 <img src="docs/performance_fig_p34_1.png" width="500"/>
 
 ## 📂 Project Structure
 
+```plaintext
 DocumentDigitalTwin/
 ├── app.py
 ├── templates/
@@ -86,6 +92,7 @@ DocumentDigitalTwin/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+```
 
 ## 🎓 Academic Context
 
