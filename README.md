@@ -36,20 +36,26 @@ Developed as part of my MSc thesis in Computer Engineering at Politecnico di Bar
 ```bash
 git clone https://github.com/IvanMaddalena/DocumentDigitalTwin.git
 cd DocumentDigitalTwin
+```
 
 ### 2. Create and activate virtual environment
 
+```bash
 python -m venv venv
 source venv/bin/activate        # On Windows: venv\Scripts\activate
+```
 
 ### 3. Install dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
 ### 4. Run the application
 
+```bash
 python app.py
-
+```
 
 ## 📊 Performance Results
 ⏱️ First Token Generation Time
